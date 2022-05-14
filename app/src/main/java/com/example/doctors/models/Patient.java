@@ -1,8 +1,25 @@
 package com.example.doctors.models;
 
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "patient")
 public class Patient {
+    @PrimaryKey(autoGenerate = true)
+    private long id;
+
+    @ColumnInfo(name = "f_name")
     private String f_name;
+
+    @ColumnInfo(name = "l_name")
     private String l_name;
+
+    @ColumnInfo(name = "patronymic")
+    private String patronymic;
+
+    @ColumnInfo(name = "phone")
     private String phone;
 
     public String getF_name() {
@@ -27,5 +44,21 @@ public class Patient {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPatronymic() {
+        return patronymic;
+    }
+
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.addPatient.AddPatientFragment">
+    tools:context=".ui.addPatient.AddPatientFragment"
+    android:id="@+id/fragment">
 
     <TextView
         android:layout_width="wrap_content"
@@ -16,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
+        
         />
 
     <EditText
@@ -48,6 +50,21 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
+        android:id="@+id/patronymic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:hint="Отчество"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="331dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
         android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Записаться"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:layout_gravity="center"
         tools:layout_editor_absoluteY="628dp" />
 </LinearLayout>

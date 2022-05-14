@@ -1,5 +1,7 @@
 package com.example.doctors.ui.home;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +38,24 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
         Patient patient = patients.get(position);
         holder.binding.fName.setText("Имя: " + patient.getF_name());
         holder.binding.lName.setText("Фамилия: " + patient.getL_name());
-        holder.binding.phone.setText("Номре телефона: " + patient.getPhone());
+        holder.binding.phone.setText("Номер телефона: " + patient.getPhone());
+        holder.binding.patronymic.setText("Отчество: " + patient.getPatronymic());
+        holder.binding.item.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                AlertDialog alertDialog = new AlertDialog.Builder(holder.binding.getRoot().getContext()).create();
+                alertDialog.setTitle("Ваша очередь");
+                alertDialog.setMessage("" + (holder.getAdapterPosition() + 1));
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+                return true;
+            }
+        });
     }
 
     @Override
