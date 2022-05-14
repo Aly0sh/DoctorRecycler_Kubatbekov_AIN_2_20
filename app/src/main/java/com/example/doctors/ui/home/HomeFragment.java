@@ -8,9 +8,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doctors.databinding.FragmentHomeBinding;
+import com.example.doctors.models.Patient;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
@@ -24,8 +30,18 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        RecyclerView recyclerView = binding.patientRecycler;
+        recyclerView.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
+        recyclerView.setHasFixedSize(true);
+        PatientAdapter patientAdapter = new PatientAdapter();
+        recyclerView.setAdapter(patientAdapter);
+        homeViewModel.getMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Patient>>() {
+            @Override
+            public void onChanged(ArrayList<Patient> patients) {
+                patientAdapter.setList(patients);
+            }
+        });
+
         return root;
     }
 
