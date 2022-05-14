@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.room.Room;
 
 import com.example.doctors.R;
@@ -57,11 +59,9 @@ public class AddPatientFragment extends Fragment {
                 patient.setPhone(binding.phone.getText().toString());
                 if(!(patient.getF_name().isEmpty() || patient.getL_name().isEmpty() || patient.getPhone().isEmpty() || patient.getPatronymic().isEmpty())){
                     patientDAO.insertPatient(patient);
-                    HomeFragment nextFrag= new HomeFragment();
-                    getFragmentManager().beginTransaction()
-                            .replace(AddPatientFragment.this.getId(), nextFrag, "findThisFragment")
-                            .addToBackStack(null)
-                            .commit();
+                    NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+                    navController.navigateUp();
+                    navController.navigate(R.id.navigation_home);
                 } else{
                     AlertDialog alertDialog = new AlertDialog.Builder(binding.getRoot().getContext()).create();
                     alertDialog.setTitle("Ошибка");

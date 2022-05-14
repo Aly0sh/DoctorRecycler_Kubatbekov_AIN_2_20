@@ -44,7 +44,6 @@ public class HomeFragment extends Fragment {
         PatientAdapter patientAdapter = new PatientAdapter();
         recyclerView.setAdapter(patientAdapter);
         appDatabase = Room.databaseBuilder(binding.getRoot().getContext(), AppDatabase.class, "database").allowMainThreadQueries().build();
-//        appDatabase = MainActivity.getInstance().getDatabase();
         patientDAO = appDatabase.patientDAO();
         patientAdapter.setList(patientDAO.getAll());
 
