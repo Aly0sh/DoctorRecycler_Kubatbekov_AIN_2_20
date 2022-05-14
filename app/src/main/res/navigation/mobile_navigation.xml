@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.doctors.ui.addDoctor.AddDoctorFragment"
+        android:name="com.example.doctors.ui.addPatient.AddPatientFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_add_doctor" />
+        tools:layout="@layout/fragment_add_patient" />
 </navigation>
